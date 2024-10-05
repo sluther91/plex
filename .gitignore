@@ -1,0 +1,18 @@
+# Ignore environment files with sensitive information
+.env
+env.json
+
+# Ignore Docker volumes and generated files
+volumes/
+data/
+logs/
+backup/
+
+# Ignore media files
+/Users/user/Desktop/Projects/plex/compose/tvseries/*
+/Users/user/Desktop/Projects/plex/compose/movies/*
+/Users/user/Desktop/Projects/plex/compose/library/*
+
+# Ignore system files
+.DS_Store
+.vscode/

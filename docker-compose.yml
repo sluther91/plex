@@ -37,3 +37,23 @@ services:
       - /Users/user/Desktop/Projects/plex/docker/radar/movies:/movies # Replace with your movies path
       - /Users/user/Desktop/Projects/plex/docker/radar/downloads:/downloads # Replace with your downloads path
     restart: unless-stopped
+  readarr:
+    image: lscr.io/linuxserver/readarr:develop
+    container_name: readarr-books
+    ports:
+      - "8787:8787" # Expose Readarr for books on port 8787
+    volumes:
+      - /Users/user/Desktop/Projects/plex/docker/readarr-booksconfig:/config # Config path for books
+      - /Users/user/Desktop/Projects/plex/docker/readarr-books/books:/books # Path for books
+      - /Users/user/Desktop/Projects/plex/docker/readarr-books/downloads:/downloads # Path for downloads
+    restart: unless-stopped
+  readarr-audiobooks:
+    image: lscr.io/linuxserver/readarr:develop
+    container_name: readarr-audiobooks
+    ports:
+      - "8788:8787" # Expose Readarr for audiobooks on port 8788
+    volumes:
+      - /Users/user/Desktop/Projects/plex/docker/readarr-audiobooks/config:/config # Config path for audiobooks
+      - /Users/user/Desktop/Projects/plex/docker/readarr-audiobooks/audiobooks:/audiobooks # Path for audiobooks
+      - /Users/user/Desktop/Projects/plex/docker/readarr-audiobooks/downloads:/downloads # Path for downloads
+    restart: unless-stopped

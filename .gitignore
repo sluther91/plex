@@ -1,6 +1,11 @@
 # Ignore environment files with sensitive information
 .env
 env.json
+docker-compose.override.yml
+docker-compose*.log
+/data
+/config
+*.env
 
 # Ignore Docker volumes and generated files
 volumes/
@@ -16,3 +21,22 @@ backup/
 # Ignore system files
 .DS_Store
 .vscode/
+
+# System files
+*.log
+*.pid
+*.lock
+*.sock
+
+# Plex/MEdia Server specific files
+Plex\ Media\ Server/Preferences.xml
+Plex\ Media\ Server/Logs/
+Plex\ Media\ Server/Plug-in\ Support/
+Plex\ Media\ Server/Cache/
+Plex\ Media\ Server/Metadata/
+Plex\ Media\ Server/Media/
+Plex\ Media\ Server/Plug-ins/
+Plex\ Media\ Server/Scanners/
+
+# Ignore all mounted volumes
+/Volumes

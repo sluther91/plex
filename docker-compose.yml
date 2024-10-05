@@ -1,4 +1,5 @@
 ---
+version: "1"
 services:
   plex:
     image: lscr.io/linuxserver/plex:latest
@@ -15,4 +16,14 @@ services:
       - /Users/user/Desktop/Projects/composeplex/library:/config
       - /Users/user/Desktop/Projects/composeplex/tvseries:/tv
       - /Users/user/Desktop/Projects/composeplex/movies:/movies
+    restart: unless-stopped
+  sonarr:
+    image: linuxserver/sonarr
+    container_name: sonarr
+    ports:
+      - "8989:8989" # Expose Sonarr on port 8989
+    volumes:
+      - /Users/user/Desktop/Projects/plex/docker/sonarr/config:/config # Replace with your config path
+      - /Users/user/Desktop/Projects/plex/docker/sonarr/shows:/tv # Replace with your TV shows path
+      - /Users/user/Desktop/Projects/plex/docker/sonarr/downloads:/downloads # Replace with your downloads path
     restart: unless-stopped

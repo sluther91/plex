@@ -27,3 +27,13 @@ services:
       - /Users/user/Desktop/Projects/plex/docker/sonarr/shows:/tv # Replace with your TV shows path
       - /Users/user/Desktop/Projects/plex/docker/sonarr/downloads:/downloads # Replace with your downloads path
     restart: unless-stopped
+  radarr:
+    image: linuxserver/radarr
+    container_name: radarr
+    ports:
+      - "7878:7878" # Expose Radarr on port 7878
+    volumes:
+      - /Users/user/Desktop/Projects/plex/docker/radar/config:/config # Replace with your config path
+      - /Users/user/Desktop/Projects/plex/docker/radar/movies:/movies # Replace with your movies path
+      - /Users/user/Desktop/Projects/plex/docker/radar/downloads:/downloads # Replace with your downloads path
+    restart: unless-stopped

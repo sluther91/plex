@@ -131,11 +131,25 @@ services:
     environment:
       - PUID=501 # Change to your user ID
       - PGID=20 # Change to your group ID
-      - TZ=Europe/London # Change to your timezone
+      - TZ=America/Denver # Change to your timezone
       - WEBUI_PORT=8081 # Web UI port (can change if needed)
     volumes:
       - /Users/user/Desktop/Projects/plex/docker/qbittorrent/config:/config # Persistent storage for config files
       - /Users/user/Desktop/Projects/plex/docker/qbittorrentd/downloads:/downloads # Path for downloads
     ports:
       - 8081:8081 # qBittorrent Web UI
+    restart: unless-stopped
+  bazarr:
+    image: lscr.io/linuxserver/bazarr:latest
+    container_name: bazarr
+    environment:
+      - PUID=501
+      - PGID=20
+      - TZ=America/Denver
+    volumes:
+      - /Users/user/Desktop/Projects/plex/docker/bazarr/config:/config
+      - /Users/user/Desktop/Projects/plex/docker/bazarr/movies:/movies #optional
+      - /Users/user/Desktop/Projects/plex/docker/bazarr/tv:/tv #optional
+    ports:
+      - 6767:6767
     restart: unless-stopped

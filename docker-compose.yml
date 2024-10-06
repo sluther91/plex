@@ -9,7 +9,7 @@ services:
     environment:
       - PUID=501
       - PGID=20
-      - TZ=Etc/UTC
+      - TZ=America/Denver
       - VERSION=docker
       - PLEX_CLAIM= #optional
     volumes:
@@ -23,7 +23,7 @@ services:
     environment:
       - PUID=501
       - PGID=20
-      - TZ=Etc/UTC
+      - TZ=America/Denver
     ports:
       - "8989:8989" # Expose Sonarr on port 8989
     volumes:
@@ -37,7 +37,7 @@ services:
     environment:
       - PUID=501
       - PGID=20
-      - TZ=Etc/UTC
+      - TZ=America/Denver
     ports:
       - "7878:7878" # Expose Radarr on port 7878
     volumes:
@@ -51,7 +51,7 @@ services:
     environment:
       - PUID=501
       - PGID=20
-      - TZ=Etc/UTC
+      - TZ=America/Denver
     ports:
       - "8787:8787" # Expose Readarr for books on port 8787
     volumes:
@@ -65,7 +65,7 @@ services:
     environment:
       - PUID=501
       - PGID=20
-      - TZ=Etc/UTC
+      - TZ=America/Denver
     ports:
       - "8788:8787" # Expose Readarr for audiobooks on port 8788
     volumes:
@@ -83,7 +83,7 @@ services:
     environment:
       - PUID=501
       - PGID=20
-      - TZ=Etc/UTC
+      - TZ=America/Denver
     restart: unless-stopped
   tdarr:
     container_name: tdarr
@@ -94,7 +94,7 @@ services:
     environment:
       - PUID=501
       - PGID=20
-      - TZ=Etc/UTC
+      - TZ=America/Denver
       - UMASK_SET=002
       - serverIP=0.0.0.0
       - serverPort=8266
@@ -111,4 +111,31 @@ services:
       - /Users/user/Desktop/Projects/plex/docker/tdarr/logs:/app/logs
       - /Users/user/Desktop/Projects/plex/docker/tdarr/media:/media
       - /Users/user/Desktop/Projects/plex/docker/tdarr/transcode_cache:/temp
+    restart: unless-stopped
+  sabnzbd:
+    image: lscr.io/linuxserver/sabnzbd:latest
+    container_name: sabnzbd
+    environment:
+      - PUID=501 # Change to your user ID
+      - PGID=20 # Change to your group ID
+      - TZ=America/Denver # Change to your timezone
+    volumes:
+      - /Users/user/Desktop/Projects/plex/docker/sabnzbd/config:/config # Persistent storage for config files
+      - /Users/user/Desktop/Projects/plex/docker/sabnzbd/downloads:/downloads # Path for downloads
+    ports:
+      - 8080:8080 # SABnzbd web interface
+    restart: unless-stopped
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent
+    environment:
+      - PUID=501 # Change to your user ID
+      - PGID=20 # Change to your group ID
+      - TZ=Europe/London # Change to your timezone
+      - WEBUI_PORT=8081 # Web UI port (can change if needed)
+    volumes:
+      - /Users/user/Desktop/Projects/plex/docker/qbittorrent/config:/config # Persistent storage for config files
+      - /Users/user/Desktop/Projects/plex/docker/qbittorrentd/downloads:/downloads # Path for downloads
+    ports:
+      - 8081:8081 # qBittorrent Web UI
     restart: unless-stopped

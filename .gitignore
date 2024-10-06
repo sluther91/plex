@@ -40,3 +40,9 @@ Plex\ Media\ Server/Scanners/
 
 # Ignore all mounted volumes
 /Volumes
+
+#SABnzbd and qBittorrent data
+/sabnzbd/config/
+/sabnzbd/downloads/
+/qbittorrent/config/
+/qbittorrent/downloads/
